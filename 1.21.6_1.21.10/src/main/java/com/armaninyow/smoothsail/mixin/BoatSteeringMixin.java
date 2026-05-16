@@ -4,13 +4,13 @@ import com.armaninyow.smoothsail.SmoothSail;
 import com.armaninyow.smoothsail.SmoothSailClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
+import net.minecraft.world.entity.vehicle.AbstractBoat;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// 1.21.11
+// 1.21.6_1.21.10
 @Mixin(AbstractBoat.class)
 public class BoatSteeringMixin {
 

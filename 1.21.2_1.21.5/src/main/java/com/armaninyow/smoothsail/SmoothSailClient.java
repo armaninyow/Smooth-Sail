@@ -3,9 +3,8 @@ package com.armaninyow.smoothsail;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
-// 1.21.11
+// 1.21.2_1.21.5
 public class SmoothSailClient implements ClientModInitializer {
 
 	/** True when the current server has SmoothSail installed. */
@@ -13,7 +12,8 @@ public class SmoothSailClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		HudRenderCallback.EVENT.register(new SteeringHudRenderer());
+		// Rendering is handled by GuiMixin injecting after renderHotbarAndDecorations
+		// so that the bar appears above the XP bar in survival mode.
 
 		// Receive handshake from server — enable smooth steering.
 		ClientPlayNetworking.registerGlobalReceiver(SmoothSailHandshakePayload.TYPE, (payload, context) -> {
@@ -26,6 +26,6 @@ public class SmoothSailClient implements ClientModInitializer {
 			serverHasMod = false;
 		});
 
-		SmoothSail.LOGGER.info("SmoothSail client initialised — HUD renderer registered.");
+		SmoothSail.LOGGER.info("SmoothSail client initialised.");
 	}
 }

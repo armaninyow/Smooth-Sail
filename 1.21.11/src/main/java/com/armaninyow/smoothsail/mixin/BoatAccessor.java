@@ -4,6 +4,7 @@ import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
+// 1.21.11
 @Mixin(AbstractBoat.class)
 public interface BoatAccessor {
 

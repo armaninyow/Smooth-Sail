@@ -5,20 +5,20 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.vehicle.AbstractBoat;
 
-// 1.21.11
+// 1.21.6_1.21.10
 public class SteeringHudRenderer implements HudRenderCallback {
 
-	private static final Identifier LEFT_BG =
-		Identifier.fromNamespaceAndPath("smoothsail", "textures/hud/left_steering_bar_background.png");
-	private static final Identifier LEFT_PROGRESS =
-		Identifier.fromNamespaceAndPath("smoothsail", "textures/hud/left_steering_bar_progress.png");
-	private static final Identifier RIGHT_BG =
-		Identifier.fromNamespaceAndPath("smoothsail", "textures/hud/right_steering_bar_background.png");
-	private static final Identifier RIGHT_PROGRESS =
-		Identifier.fromNamespaceAndPath("smoothsail", "textures/hud/right_steering_bar_progress.png");
+	private static final ResourceLocation LEFT_BG =
+		ResourceLocation.fromNamespaceAndPath("smoothsail", "textures/hud/left_steering_bar_background.png");
+	private static final ResourceLocation LEFT_PROGRESS =
+		ResourceLocation.fromNamespaceAndPath("smoothsail", "textures/hud/left_steering_bar_progress.png");
+	private static final ResourceLocation RIGHT_BG =
+		ResourceLocation.fromNamespaceAndPath("smoothsail", "textures/hud/right_steering_bar_background.png");
+	private static final ResourceLocation RIGHT_PROGRESS =
+		ResourceLocation.fromNamespaceAndPath("smoothsail", "textures/hud/right_steering_bar_progress.png");
 
 	private static final int BAR_W = 182;
 	private static final int BAR_H = 5;

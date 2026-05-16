@@ -1,6 +1,7 @@
 package com.armaninyow.smoothsail.mixin;
 
 import com.armaninyow.smoothsail.SmoothSail;
+import com.armaninyow.smoothsail.SmoothSailClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -9,11 +10,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+// 1.21_1.21.1
 @Mixin(Boat.class)
 public class BoatSteeringMixin {
 
 	@Inject(at = @At("HEAD"), method = "tick", remap = false)
 	private void smoothsail$tickHead(CallbackInfo ci) {
+		if (!SmoothSailClient.serverHasMod) return;
+
 		Boat self = (Boat) (Object) this;
 		Minecraft mc = Minecraft.getInstance();
 		if (mc.player == null || mc.player.getVehicle() != self) return;
@@ -25,6 +29,8 @@ public class BoatSteeringMixin {
 
 	@Inject(at = @At("HEAD"), method = "clampRotation", remap = false, cancellable = true)
 	private void smoothsail$clampRotation(Entity passenger, CallbackInfo ci) {
+		if (!SmoothSailClient.serverHasMod) return;
+
 		Boat self = (Boat) (Object) this;
 		Minecraft mc = Minecraft.getInstance();
 		if (mc.player == null || passenger != mc.player) return;
@@ -64,6 +70,8 @@ public class BoatSteeringMixin {
 
 	@Inject(at = @At("TAIL"), method = "tick", remap = false)
 	private void smoothsail$tickTail(CallbackInfo ci) {
+		if (!SmoothSailClient.serverHasMod) return;
+
 		Boat self = (Boat) (Object) this;
 		Minecraft mc = Minecraft.getInstance();
 		if (mc.player == null || mc.player.getVehicle() != self) return;

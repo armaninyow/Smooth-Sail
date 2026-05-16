@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
-// 1.21.11
+// 1.21.6_1.21.10
 public class SmoothSailClient implements ClientModInitializer {
 
 	/** True when the current server has SmoothSail installed. */

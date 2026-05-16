@@ -3,10 +3,11 @@ package com.armaninyow.smoothsail;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.AbstractBoat;
 
-// 1.21_1.21.1
+// 1.21.2_1.21.5
 public class SteeringHudRenderer implements HudRenderCallback {
 
 	private static final ResourceLocation LEFT_BG =
@@ -27,7 +28,7 @@ public class SteeringHudRenderer implements HudRenderCallback {
 	public void onHudRender(GuiGraphics graphics, net.minecraft.client.DeltaTracker deltaTracker) {
 		Minecraft mc = Minecraft.getInstance();
 
-		if (mc.player == null || !(mc.player.getVehicle() instanceof Boat)) return;
+		if (mc.player == null || !(mc.player.getVehicle() instanceof AbstractBoat)) return;
 		if (mc.screen != null) return;
 
 		SteeringInputHandler handler = SmoothSail.steeringHandler;
@@ -46,18 +47,18 @@ public class SteeringHudRenderer implements HudRenderCallback {
 		graphics.pose().translate(0, 0, 200);
 
 		if (leftProgress > 0f && rightProgress <= 0f) {
-			graphics.blit(LEFT_BG, barX, barY, 0, 0f, 0f, BAR_W, BAR_H, TEX_W, TEX_H);
+			graphics.blit(RenderType::guiTextured, LEFT_BG, barX, barY, 0f, 0f, BAR_W, BAR_H, TEX_W, TEX_H);
 
 			int fillW  = Math.max(1, Math.round(leftProgress * BAR_W));
 			int fillX  = barX + (BAR_W - fillW);
 			float uOff = BAR_W - fillW;
-			graphics.blit(LEFT_PROGRESS, fillX, barY, 0, uOff, 0f, fillW, BAR_H, TEX_W, TEX_H);
+			graphics.blit(RenderType::guiTextured, LEFT_PROGRESS, fillX, barY, uOff, 0f, fillW, BAR_H, TEX_W, TEX_H);
 
 		} else if (rightProgress > 0f) {
-			graphics.blit(RIGHT_BG, barX, barY, 0, 0f, 0f, BAR_W, BAR_H, TEX_W, TEX_H);
+			graphics.blit(RenderType::guiTextured, RIGHT_BG, barX, barY, 0f, 0f, BAR_W, BAR_H, TEX_W, TEX_H);
 
 			int fillW = Math.max(1, Math.round(rightProgress * BAR_W));
-			graphics.blit(RIGHT_PROGRESS, barX, barY, 0, 0f, 0f, fillW, BAR_H, TEX_W, TEX_H);
+			graphics.blit(RenderType::guiTextured, RIGHT_PROGRESS, barX, barY, 0f, 0f, fillW, BAR_H, TEX_W, TEX_H);
 		}
 
 		graphics.pose().popPose();
