@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// 26.1.x
 public class SmoothSail implements ModInitializer {
 	public static final String MOD_ID = "smoothsail";
 
@@ -15,16 +16,14 @@ public class SmoothSail implements ModInitializer {
 	/** Shared ramp state — read by the mixin, written by the HUD renderer. */
 	public static final SteeringInputHandler steeringHandler = new SteeringInputHandler();
 
-	/** Shared HUD renderer instance — used by GuiMixin in branches that need post-XP-bar rendering. */
-	public static final SteeringHudRenderer hudRenderer = new SteeringHudRenderer();
-
 	/** Last scaled net steering value; used only for debug/future purposes. */
 	public static float lastNetSteering = 0f;
 
 	@Override
 	public void onInitialize() {
 		// Register payload type on both sides.
-		PayloadTypeRegistry.playS2C().register(
+		// playS2C() renamed to clientboundPlay() in Fabric API 26.1
+		PayloadTypeRegistry.clientboundPlay().register(
 			SmoothSailHandshakePayload.TYPE,
 			SmoothSailHandshakePayload.CODEC
 		);
