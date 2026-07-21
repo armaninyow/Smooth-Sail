@@ -5,7 +5,6 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 
-// 1.21.11
 public record SmoothSailHandshakePayload() implements CustomPacketPayload {
 
 	public static final CustomPacketPayload.Type<SmoothSailHandshakePayload> TYPE =

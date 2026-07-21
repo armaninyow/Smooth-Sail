@@ -7,10 +7,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.resources.Identifier;
 
-// 26.1.x
 public class SmoothSailClient implements ClientModInitializer {
 
-	/** True when the current server has SmoothSail installed. */
 	public static boolean serverHasMod = false;
 
 	@Override
@@ -21,13 +19,11 @@ public class SmoothSailClient implements ClientModInitializer {
 			new SteeringHudRenderer()
 		);
 
-		// Receive handshake from server — enable smooth steering.
 		ClientPlayNetworking.registerGlobalReceiver(SmoothSailHandshakePayload.TYPE, (payload, context) -> {
 			serverHasMod = true;
 			SmoothSail.LOGGER.info("SmoothSail: server opt-in confirmed — smooth steering enabled.");
 		});
 
-		// Reset flag on disconnect so it doesn't carry over to the next server.
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
 			serverHasMod = false;
 		});
